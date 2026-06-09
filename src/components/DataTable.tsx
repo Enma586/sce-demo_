@@ -95,8 +95,8 @@ export default function DataTable<T>({
         >
           <div className="sm:flex sm:items-center sm:gap-4 space-y-2 sm:space-y-0">
             {columns.map((col) => (
-              <div key={String(col.key)} className={`${col.className ?? ''} flex items-center justify-between gap-2 sm:block`}>
-                <span className="sm:hidden text-[10px] font-semibold tracking-widest uppercase text-navy-400 shrink-0">
+              <div key={String(col.key)} className={`w-full sm:w-auto ${col.className ?? ''} flex items-start gap-2 sm:block`}>
+                <span className="sm:hidden text-[10px] font-semibold tracking-widest uppercase text-navy-400 shrink-0 w-[76px]">
                   {col.label}
                 </span>
                 <div className={!col.render ? 'truncate' : ''}>
