@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #0f172a;
+  --color-navy-800: #1e293b;
+  --color-navy-700: #2d3a5c;
+  --color-navy-600: #3b4d7a;
+  --color-navy-500: #4a6294;
+  --color-red-accent: #e63946;
+  --color-red-hover: #c1121f;
+  --color-blue-accent: #2563eb;
+  --color-blue-hover: #1d4ed8;
+  --color-cream: #f8fafc;
+  --color-doodle: #94a3b8;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: #ffffff;
+  color: var(--color-navy-800);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+.doodle-border {
+  border: 2px solid var(--color-navy-200, #e2e8f0);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.doodle-border:hover {
+  border-color: var(--color-navy-500);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.doodle-underline {
+  position: relative;
+  display: inline-block;
+}
+.doodle-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-blue-accent);
+  border-radius: 2px;
+}
+
+.doodle-dots {
+  background-image: radial-gradient(var(--color-doodle) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
