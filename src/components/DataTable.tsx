@@ -91,11 +91,11 @@ export default function DataTable<T>({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.035, type: 'spring', stiffness: 300, damping: 25 }}
           whileHover={{ y: -2, scale: 1.003 }}
-          className="relative px-5 py-4 bg-white doodle-border hover:border-navy-400 transition-all duration-200"
+          className="px-5 py-4 bg-white doodle-border hover:border-navy-400 transition-all duration-200"
         >
           <div className="sm:flex sm:items-center sm:gap-4 space-y-2 sm:space-y-0">
             {columns.map((col) => (
-              <div key={String(col.key)} className={`w-full sm:w-auto ${col.className ?? ''} flex items-start gap-2 sm:block`}>
+              <div key={String(col.key)} className={`${col.className ?? ''} flex items-start gap-2 sm:block`}>
                 <span className="sm:hidden text-[10px] font-semibold tracking-widest uppercase text-navy-400 shrink-0 w-[76px]">
                   {col.label}
                 </span>
@@ -106,29 +106,29 @@ export default function DataTable<T>({
                 </div>
               </div>
             ))}
+            {showActions && (
+              <div className="hidden sm:flex items-center gap-1 ml-auto">
+                {onEdit && (
+                  <button type="button" onClick={(e) => { e.stopPropagation(); onEdit(item) }}
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-navy-400 hover:text-blue-accent hover:bg-blue-50 transition-all cursor-pointer" title="Editar">✎</button>
+                )}
+                {onDelete && (
+                  <button type="button" onClick={(e) => { e.stopPropagation(); onDelete(item) }}
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-navy-400 hover:text-red-accent hover:bg-red-50 transition-all cursor-pointer" title="Eliminar">✕</button>
+                )}
+              </div>
+            )}
           </div>
 
           {showActions && (
-            <div className="flex items-center justify-end gap-1 mt-3 pt-3 border-t border-navy-100 sm:mt-0 sm:pt-0 sm:border-t-0 sm:absolute sm:right-5 sm:top-1/2 sm:-translate-y-1/2">
+            <div className="flex sm:hidden items-center justify-end gap-1 mt-3 pt-3 border-t border-navy-100">
               {onEdit && (
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); onEdit(item) }}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-navy-400 hover:text-blue-accent hover:bg-blue-50 transition-all cursor-pointer"
-                  title="Editar"
-                >
-                  ✎
-                </button>
+                <button type="button" onClick={(e) => { e.stopPropagation(); onEdit(item) }}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center text-navy-400 hover:text-blue-accent hover:bg-blue-50 transition-all cursor-pointer" title="Editar">✎</button>
               )}
               {onDelete && (
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); onDelete(item) }}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-navy-400 hover:text-red-accent hover:bg-red-50 transition-all cursor-pointer"
-                  title="Eliminar"
-                >
-                  ✕
-                </button>
+                <button type="button" onClick={(e) => { e.stopPropagation(); onDelete(item) }}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center text-navy-400 hover:text-red-accent hover:bg-red-50 transition-all cursor-pointer" title="Eliminar">✕</button>
               )}
             </div>
           )}
