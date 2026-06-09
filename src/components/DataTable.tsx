@@ -68,7 +68,7 @@ export default function DataTable<T>({
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-4 px-5 py-2">
+      <div className="hidden sm:flex items-center gap-4 px-5 py-2">
         {columns.map((col) => (
           <div key={String(col.key)} className={col.className ?? ''}>
             <span className="text-[10px] font-semibold tracking-widest uppercase text-navy-400">
@@ -91,18 +91,26 @@ export default function DataTable<T>({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.035, type: 'spring', stiffness: 300, damping: 25 }}
           whileHover={{ y: -2, scale: 1.003 }}
-          className="flex items-center gap-4 px-5 py-4 bg-white doodle-border hover:border-navy-400 transition-all duration-200"
+          className="relative px-5 py-4 bg-white doodle-border hover:border-navy-400 transition-all duration-200"
         >
-          {columns.map((col) => (
-            <div key={String(col.key)} className={col.className ?? ''}>
-              {col.render
-                ? col.render(item)
-                : String(item[col.key as keyof T] ?? '')}
-            </div>
-          ))}
+          <div className="sm:flex sm:items-center sm:gap-4 space-y-2 sm:space-y-0">
+            {columns.map((col) => (
+              <div key={String(col.key)} className={`${col.className ?? ''} flex items-center justify-between sm:block`}>
+                <span className="sm:hidden text-[10px] font-semibold tracking-widest uppercase text-navy-400 mr-2 shrink-0">
+                  {col.label}
+                </span>
+                <span className="sm:hidden" />
+                <div>
+                  {col.render
+                    ? col.render(item)
+                    : String(item[col.key as keyof T] ?? '')}
+                </div>
+              </div>
+            ))}
+          </div>
 
           {showActions && (
-            <div className="flex items-center gap-1 ml-auto">
+            <div className="flex items-center justify-end gap-1 mt-3 pt-3 border-t border-navy-100 sm:mt-0 sm:pt-0 sm:border-t-0 sm:absolute sm:right-5 sm:top-1/2 sm:-translate-y-1/2">
               {onEdit && (
                 <button
                   type="button"
