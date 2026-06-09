@@ -138,7 +138,8 @@ export default function Bookings() {
     {
       key: 'service',
       label: 'Servicio',
-      className: 'w-44 text-sm text-navy-600',
+      className: 'w-40 text-sm text-navy-600 truncate',
+      render: (b) => <span className="truncate block">{b.service}</span>,
     },
     {
       key: 'date',

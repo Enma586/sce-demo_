@@ -100,10 +100,10 @@ export default function DataTable<T>({
                   {col.label}
                 </span>
                 <span className="sm:hidden" />
-                <div>
+                <div className={!col.render ? 'truncate' : ''}>
                   {col.render
                     ? col.render(item)
-                    : String(item[col.key as keyof T] ?? '')}
+                    : <span className="truncate block">{String(item[col.key as keyof T] ?? '')}</span>}
                 </div>
               </div>
             ))}
