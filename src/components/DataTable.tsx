@@ -95,14 +95,14 @@ export default function DataTable<T>({
         >
           <div className="sm:flex sm:items-center sm:gap-4 space-y-2 sm:space-y-0">
             {columns.map((col) => (
-              <div key={String(col.key)} className={`${col.className ?? ''} flex items-start gap-2 sm:block`}>
+              <div key={String(col.key)} className={`${col.className ?? ''} max-sm:w-full flex items-start gap-2 sm:block`}>
                 <span className="sm:hidden text-[10px] font-semibold tracking-widest uppercase text-navy-400 shrink-0 w-[76px]">
                   {col.label}
                 </span>
-                <div className={!col.render ? 'truncate' : ''}>
+                <div className="sm:truncate">
                   {col.render
                     ? col.render(item)
-                    : <span className="truncate block">{String(item[col.key as keyof T] ?? '')}</span>}
+                    : String(item[col.key as keyof T] ?? '')}
                 </div>
               </div>
             ))}
